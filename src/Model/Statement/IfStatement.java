@@ -4,8 +4,8 @@ import Model.Expression.IExpression;
 import Model.ProgramState;
 
 public class IfStatement implements IStatement {
-    IExpression expression;
-    IStatement statement1, statement2;
+    private IExpression expression;
+    private IStatement statement1, statement2;
 
     public IfStatement(IExpression expression, IStatement statement1, IStatement statement2) {
         this.expression = expression;

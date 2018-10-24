@@ -18,10 +18,15 @@ public class MyList<T> implements IList<T> {
         return list.remove(elem);
     }
 
+    @Override
+    public T get(int index) {
+        return list.get(index);
+    }
+
     public String toString(){
-        String res = "";
+        StringBuilder res = new StringBuilder();
         for(T elem : list)
-            res += elem.toString();
-        return res;
+            res.append(elem.toString()).append(" ");
+        return res.toString();
     }
 }

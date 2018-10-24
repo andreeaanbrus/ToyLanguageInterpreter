@@ -5,7 +5,7 @@ import Model.Expression.IExpression;
 import Model.ProgramState;
 
 public class PrintStatement implements IStatement {
-    IExpression exp;
+    private IExpression exp;
 
     public PrintStatement(IExpression exp) {
         this.exp = exp;

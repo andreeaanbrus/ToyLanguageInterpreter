@@ -51,4 +51,15 @@ public class ProgramState {
     public void setOutput(MyList<Integer> output) {
         this.output = output;
     }
+
+    public String toString(){
+        String s = "";
+        s += "exeStack:\n";
+        s += this.exeStack.toString();
+        s += "\nsymTable:";
+        s += this.symTable.toString();
+        s += "\noutput:";
+        s += this.output.toString();
+        return s;
+    }
 }

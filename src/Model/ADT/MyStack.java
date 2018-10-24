@@ -26,9 +26,9 @@ public class MyStack<T> implements IStack<T> {
     }
 
     public String toString(){
-        String s = "";
+        StringBuilder s = new StringBuilder();
         for(T elem : stack)
-            s +=  elem.toString();
-        return s;
+            s.append(elem.toString()).append(" ");
+        return s.toString();
     }
 }

@@ -1,6 +1,7 @@
 package Model.ADT;
 
 import java.util.HashMap;
+import Exception.ADTException;
 
 public class MyDictionary<K, V> implements IDictionary<K, V> {
 
@@ -12,6 +13,8 @@ public class MyDictionary<K, V> implements IDictionary<K, V> {
 
     @Override
     public V get(K key) {
+        if(dictionary.get(key) == null)
+            throw new ADTException("Invalid key");
         return dictionary.get(key);
     }
 
@@ -36,9 +39,9 @@ public class MyDictionary<K, V> implements IDictionary<K, V> {
     }
 
     public String toString(){
-        String res = "";
+        StringBuilder res = new StringBuilder();
         for(K key : dictionary.keySet())
-            res += key.toString() + " -> " + dictionary.get(key) + "\n";
-        return res;
+            res.append(key.toString()).append(" -> ").append(dictionary.get(key)).append("\n");
+        return res.toString();
     }
 }

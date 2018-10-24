@@ -1,4 +1,8 @@
 package Repository;
 
-public class IRepository {
+import Model.ProgramState;
+
+public interface IRepository {
+    ProgramState getCurrentProgram();
+    void add(ProgramState p);
 }
