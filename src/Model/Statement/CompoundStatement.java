@@ -1,11 +1,8 @@
 package Model.Statement;
 
-import Model.ADT.MyList;
 import Model.ADT.MyStack;
 import Model.ProgramState;
 
-
-import java.sql.Statement;
 
 public class CompoundStatement implements IStatement {
     private IStatement statement1, statement2;

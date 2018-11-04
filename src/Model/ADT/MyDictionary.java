@@ -1,5 +1,6 @@
 package Model.ADT;
 
+import java.util.Collection;
 import java.util.HashMap;
 import Exception.ADTException;
 
@@ -43,5 +44,9 @@ public class MyDictionary<K, V> implements IDictionary<K, V> {
         for(K key : dictionary.keySet())
             res.append(key.toString()).append(" -> ").append(dictionary.get(key)).append("\n");
         return res.toString();
+    }
+
+    public Collection<V> values(){
+        return dictionary.values();
     }
 }

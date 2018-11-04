@@ -6,33 +6,35 @@ import Model.ADT.MyList;
 import Model.ADT.MyStack;
 import Model.Expression.ArithmeticExpression;
 import Model.Expression.ConstantExpression;
-import Model.Expression.IExpression;
 import Model.Expression.VariableExpression;
 import Model.ProgramState;
 import Model.Statement.*;
 import Repository.*;
+import javafx.util.Pair;
 
-import java.sql.Statement;
+import java.io.BufferedReader;
 import java.util.Scanner;
 
 public class View {
 
-    static void displayMenu(){
+    private static void displayMenu(){
         System.out.println("Choose a program:");
         System.out.println("1: v = 2; print(v)");
         System.out.println("2: a = 2 + 3 * 5; b = a + 1; print(b)");
         System.out.println("3: a=2-2; (if a then v=2 else v=3); print(v)");
     }
 
-    public static void main(String args[]) {
+    public static void main(String args[]) throws Exception {
         MyDictionary<String, Integer> symDict = new MyDictionary<>();
         MyList<Integer> out = new MyList<>();
         MyStack<IStatement> exeStack = new MyStack<>();
+        MyDictionary<Integer, Pair<String, BufferedReader>> fileTable = new MyDictionary<>();
         displayMenu();
         System.out.println("Command: ");
         Scanner sc = new Scanner(System.in);
         int cmd = sc.nextInt();
-        //v = 2; print(v);
+//        int cmd = 1;
+//        v = 2; print(v);
         IStatement stm = null;
         if(cmd == 1){
 
@@ -56,14 +58,37 @@ public class View {
                     AssignmentStatement("v", new ConstantExpression(3))), new PrintStatement(new VariableExpression("v"))));
         }
 
-        IRepository r = new Repository();
-        ProgramState prog = new ProgramState(symDict, exeStack, out, stm);
+//        IStatement s = new CompoundStatement(new OpenRFile("test.txt", "var_f"), new CloseRFile(new VariableExpression("var_f")));
+
+        IStatement s = new CompoundStatement(
+                new OpenRFile("test.in", "var_f"),
+                new CompoundStatement(
+                        new ReadFile(new VariableExpression("var_f"), "var_c"),
+                        new CompoundStatement(
+                                new PrintStatement(new VariableExpression("var_c")),
+                                new CompoundStatement(
+                                        new IfStatement(
+                                                new VariableExpression("var_c"),
+                                                new CompoundStatement(
+                                                        new ReadFile(new VariableExpression("var_f"), "var_c"),
+                                                        new PrintStatement(new VariableExpression("var_c"))
+                                                ),
+                                                new PrintStatement(new ConstantExpression(0))
+                                        ),
+                                        new CloseRFile(new VariableExpression("var_f"))
+                                )
+                        )
+                )
+        );
+
+
+
+        IRepository r = new Repository("test.txt");
+        ProgramState prog = new ProgramState(symDict, exeStack, out, s, fileTable);
         r.add(prog);
         InterpreterController controller = new InterpreterController(r);
-
         while(!prog.getExeStack().isEmpty()) {
             System.out.println("Choose one step (1) or all steps (2)");
-            System.out.println(r.getCurrentProgram());
             int cmd1 = sc.nextInt();
             if (cmd1 == 1) {
                 controller.oneStep(prog);
@@ -71,7 +96,9 @@ public class View {
                 controller.allSteps();
             }
             System.out.println(r.getCurrentProgram());
+
         }
+
 
     }
 }

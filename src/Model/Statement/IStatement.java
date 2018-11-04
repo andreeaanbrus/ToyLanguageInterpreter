@@ -2,7 +2,9 @@ package Model.Statement;
 
 import Model.ProgramState;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
+
 public interface IStatement {
-//    String toString();
-    ProgramState execute(ProgramState programState);
+    ProgramState execute(ProgramState programState) throws IOException;
 }

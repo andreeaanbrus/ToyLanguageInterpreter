@@ -13,11 +13,9 @@ public class InterpreterController {
         this.repo = repo;
     }
 
-    public ProgramState oneStep(ProgramState state){
+    public ProgramState oneStep(ProgramState state) throws Exception {
         //TODO Exception
         MyStack<IStatement> exeStack = state.getExeStack();
-//        System.out.println("DEBUG:");
-//        System.out.println(exeStack);
         if(exeStack.isEmpty())
             throw new ADTException("Stack is empty");
         IStatement currentStatement = exeStack.pop();
@@ -27,13 +25,16 @@ public class InterpreterController {
     public void allSteps(){
         ProgramState program = repo.getCurrentProgram();
         try{
-
             while(!program.getExeStack().isEmpty()){
                 oneStep(program);
+                repo.logProgramStateExec();
             }
         }
-        catch (RuntimeException e){
+        catch (ADTException e){
             System.out.println(e.toString());
+        }
+         catch (Exception e) {
+            e.printStackTrace();
         }
     }
 }

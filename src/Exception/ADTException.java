@@ -1,7 +1,7 @@
 package Exception;
 
 public class ADTException extends RuntimeException {
-    String exception;
+    private String exception;
     public ADTException(String exception){
         super();
         this.exception = exception;

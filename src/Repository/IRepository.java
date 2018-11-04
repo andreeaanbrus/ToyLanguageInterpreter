@@ -5,4 +5,5 @@ import Model.ProgramState;
 public interface IRepository {
     ProgramState getCurrentProgram();
     void add(ProgramState p);
+    void logProgramStateExec() throws Exception;
 }

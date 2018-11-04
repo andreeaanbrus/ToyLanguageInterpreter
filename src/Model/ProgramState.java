@@ -4,18 +4,24 @@ import Model.ADT.MyDictionary;
 import Model.ADT.MyList;
 import Model.ADT.MyStack;
 import Model.Statement.IStatement;
+import javafx.util.Pair;
+
+import java.io.BufferedReader;
 
 
 public class ProgramState {
+    //TODO DEEPCOPY
     private IStatement originalProgram;
     private MyDictionary<String, Integer> symTable;
     private MyStack<IStatement> exeStack;
     private MyList<Integer> output;
+    private MyDictionary<Integer, Pair<String, BufferedReader>> fileTable;
 
-    public ProgramState(MyDictionary<String, Integer> symTable, MyStack<IStatement> exeStack, MyList<Integer> output, IStatement program) {
+    public ProgramState(MyDictionary<String, Integer> symTable, MyStack<IStatement> exeStack, MyList<Integer> output, IStatement program, MyDictionary<Integer, Pair<String, BufferedReader>> fileTable) {
         this.symTable = symTable;
         this.exeStack = exeStack;
         this.output = output;
+        this.fileTable = fileTable;
         //originalProgram=deepCopy(program);
         exeStack.push(program);
     }
@@ -30,6 +36,10 @@ public class ProgramState {
 
     public MyDictionary<String, Integer> getSymTable() {
         return symTable;
+    }
+
+    public MyDictionary<Integer, Pair<String, BufferedReader>> getFileTable() {
+        return fileTable;
     }
 
     public void setSymTable(MyDictionary<String, Integer> symTable) {
