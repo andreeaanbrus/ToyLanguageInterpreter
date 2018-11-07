@@ -1,0 +1,118 @@
+EXE STACK
+Model.Statement.ReadFile@135fbaa4 ; print(var_c) ; if var_c then Model.Statement.ReadFile@45ee12a7 ; print(var_c) ;  else print(0) ; Model.Statement.CloseRFile@330bedb4 ;  ;  ;  Model.Statement.OpenRFile@6d6f6e28 
+SYM TABLE
+
+OUTPUT
+
+_____________________
+EXE STACK
+Model.Statement.ReadFile@135fbaa4 ; print(var_c) ; if var_c then Model.Statement.ReadFile@45ee12a7 ; print(var_c) ;  else print(0) ; Model.Statement.CloseRFile@330bedb4 ;  ;  ;  
+SYM TABLE
+var_f -> 1
+
+OUTPUT
+
+_____________________
+EXE STACK
+print(var_c) ; if var_c then Model.Statement.ReadFile@45ee12a7 ; print(var_c) ;  else print(0) ; Model.Statement.CloseRFile@330bedb4 ;  ;  Model.Statement.ReadFile@135fbaa4 
+SYM TABLE
+var_f -> 1
+
+OUTPUT
+
+_____________________
+EXE STACK
+print(var_c) ; if var_c then Model.Statement.ReadFile@45ee12a7 ; print(var_c) ;  else print(0) ; Model.Statement.CloseRFile@330bedb4 ;  ;  
+SYM TABLE
+var_f -> 1
+var_c -> 15
+
+OUTPUT
+
+_____________________
+EXE STACK
+if var_c then Model.Statement.ReadFile@45ee12a7 ; print(var_c) ;  else print(0) ; Model.Statement.CloseRFile@330bedb4 ;  print(var_c) 
+SYM TABLE
+var_f -> 1
+var_c -> 15
+
+OUTPUT
+
+_____________________
+EXE STACK
+if var_c then Model.Statement.ReadFile@45ee12a7 ; print(var_c) ;  else print(0) ; Model.Statement.CloseRFile@330bedb4 ;  
+SYM TABLE
+var_f -> 1
+var_c -> 15
+
+OUTPUT
+15 
+_____________________
+EXE STACK
+Model.Statement.CloseRFile@330bedb4 if var_c then Model.Statement.ReadFile@45ee12a7 ; print(var_c) ;  else print(0) 
+SYM TABLE
+var_f -> 1
+var_c -> 15
+
+OUTPUT
+15 
+_____________________
+EXE STACK
+Model.Statement.CloseRFile@330bedb4 print(var_c) Model.Statement.ReadFile@45ee12a7 
+SYM TABLE
+var_f -> 1
+var_c -> 15
+
+OUTPUT
+15 
+_____________________
+EXE STACK
+Model.Statement.CloseRFile@330bedb4 print(var_c) 
+SYM TABLE
+var_f -> 1
+var_c -> 40
+
+OUTPUT
+15 
+_____________________
+EXE STACK
+Model.Statement.CloseRFile@330bedb4 
+SYM TABLE
+var_f -> 1
+var_c -> 40
+
+OUTPUT
+15 40 
+_____________________
+EXE STACK
+
+SYM TABLE
+var_f -> 1
+var_c -> 40
+
+OUTPUT
+15 40 
+_____________________
+EXE STACK
+Model.Statement.ReadFile@135fbaa4 ; print(var_c) ; if var_c then Model.Statement.ReadFile@45ee12a7 ; print(var_c) ;  else print(0) ; Model.Statement.CloseRFile@330bedb4 ;  ;  ;  Model.Statement.OpenRFile@6d6f6e28 
+SYM TABLE
+
+OUTPUT
+
+_____________________
+EXE STACK
+Model.Statement.ReadFile@135fbaa4 ; print(var_c) ; if var_c then Model.Statement.ReadFile@45ee12a7 ; print(var_c) ;  else print(0) ; Model.Statement.CloseRFile@330bedb4 ;  ;  ;  
+SYM TABLE
+var_f -> 1
+
+OUTPUT
+
+_____________________
+EXE STACK
+print(var_c) ; if var_c then Model.Statement.ReadFile@45ee12a7 ; print(var_c) ;  else print(0) ; Model.Statement.CloseRFile@330bedb4 ;  ;  Model.Statement.ReadFile@135fbaa4 
+SYM TABLE
+var_f -> 1
+
+OUTPUT
+
+_____________________
