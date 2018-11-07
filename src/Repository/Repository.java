@@ -31,6 +31,14 @@ public class Repository implements IRepository{
 
     @Override
     public void logProgramStateExec() throws IOException {
+//        File f = new File(logFile);
+//        if(f.exists() && !f.isDirectory())
+//        {
+//            if(!f.delete())
+//            {
+//                System.out.println("Couldn't delete the old file!");
+//            }
+//        }
         printWriter = new PrintWriter(new BufferedWriter(new FileWriter(logFile, true)));
         printWriter.println("EXE STACK");
         printWriter.println(getCurrentProgram().getExeStack().toString());

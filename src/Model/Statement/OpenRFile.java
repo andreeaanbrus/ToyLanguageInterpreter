@@ -9,7 +9,7 @@ import Exception.ADTException;
 import java.io.*;
 
 public class OpenRFile implements IStatement {
-    private int numberOfVarFileId = 1;
+    private static int numberOfVarFileId = 1;
     private String filename;
     private String varFileId;
 

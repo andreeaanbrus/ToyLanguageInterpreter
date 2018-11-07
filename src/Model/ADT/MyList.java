@@ -1,6 +1,7 @@
 package Model.ADT;
 
 import java.util.ArrayList;
+import Exception.ADTException;
 
 public class MyList<T> implements IList<T> {
     private ArrayList<T> list;
@@ -20,7 +21,7 @@ public class MyList<T> implements IList<T> {
 
     @Override
     public T get(int index) {
-        return list.get(index);
+            return list.get(index);
     }
 
     public String toString(){

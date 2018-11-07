@@ -21,10 +21,10 @@ public class ReadFile implements IStatement {
 
     @Override
     public ProgramState execute(ProgramState programState) throws IOException {
-        MyStack<IStatement> exeStack = programState.getExeStack();
-        MyDictionary<Integer, Pair<String, BufferedReader>> fileTable = programState.getFileTable();
         MyDictionary<String, Integer> symTable = programState.getSymTable();
         int x = expressionFileId.evaluate(symTable);
+        MyStack<IStatement> exeStack = programState.getExeStack();
+        MyDictionary<Integer, Pair<String, BufferedReader>> fileTable = programState.getFileTable();
         BufferedReader reader = fileTable.get(x).getValue();
         if(reader == null)
             throw new ADTException("No such file descriptor");
