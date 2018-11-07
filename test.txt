@@ -1,0 +1,23 @@
+EXE STACK
+print(v) v = 2 
+SYM TABLE
+
+OUTPUT
+
+_____________________
+EXE STACK
+print(v) 
+SYM TABLE
+v -> 2
+
+OUTPUT
+
+_____________________
+EXE STACK
+
+SYM TABLE
+v -> 2
+
+OUTPUT
+2 
+_____________________

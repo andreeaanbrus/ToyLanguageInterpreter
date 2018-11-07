@@ -1,0 +1,95 @@
+EXE STACK
+Model.Statement.ReadFile@677327b6 ; print(var_c) ; if var_c then Model.Statement.ReadFile@14ae5a5 ; print(var_c) ;  else print(0) ; Model.Statement.CloseRFile@7f31245a ;  ;  ;  Model.Statement.OpenRFile@1540e19d 
+SYM TABLE
+
+OUTPUT
+
+_____________________
+EXE STACK
+Model.Statement.ReadFile@677327b6 ; print(var_c) ; if var_c then Model.Statement.ReadFile@14ae5a5 ; print(var_c) ;  else print(0) ; Model.Statement.CloseRFile@7f31245a ;  ;  ;  
+SYM TABLE
+var_f -> 1
+
+OUTPUT
+
+_____________________
+EXE STACK
+print(var_c) ; if var_c then Model.Statement.ReadFile@14ae5a5 ; print(var_c) ;  else print(0) ; Model.Statement.CloseRFile@7f31245a ;  ;  Model.Statement.ReadFile@677327b6 
+SYM TABLE
+var_f -> 1
+
+OUTPUT
+
+_____________________
+EXE STACK
+print(var_c) ; if var_c then Model.Statement.ReadFile@14ae5a5 ; print(var_c) ;  else print(0) ; Model.Statement.CloseRFile@7f31245a ;  ;  
+SYM TABLE
+var_f -> 1
+var_c -> 15
+
+OUTPUT
+
+_____________________
+EXE STACK
+if var_c then Model.Statement.ReadFile@14ae5a5 ; print(var_c) ;  else print(0) ; Model.Statement.CloseRFile@7f31245a ;  print(var_c) 
+SYM TABLE
+var_f -> 1
+var_c -> 15
+
+OUTPUT
+
+_____________________
+EXE STACK
+if var_c then Model.Statement.ReadFile@14ae5a5 ; print(var_c) ;  else print(0) ; Model.Statement.CloseRFile@7f31245a ;  
+SYM TABLE
+var_f -> 1
+var_c -> 15
+
+OUTPUT
+15 
+_____________________
+EXE STACK
+Model.Statement.CloseRFile@7f31245a if var_c then Model.Statement.ReadFile@14ae5a5 ; print(var_c) ;  else print(0) 
+SYM TABLE
+var_f -> 1
+var_c -> 15
+
+OUTPUT
+15 
+_____________________
+EXE STACK
+Model.Statement.CloseRFile@7f31245a print(var_c) Model.Statement.ReadFile@14ae5a5 
+SYM TABLE
+var_f -> 1
+var_c -> 15
+
+OUTPUT
+15 
+_____________________
+EXE STACK
+Model.Statement.CloseRFile@7f31245a print(var_c) 
+SYM TABLE
+var_f -> 1
+var_c -> 40
+
+OUTPUT
+15 
+_____________________
+EXE STACK
+Model.Statement.CloseRFile@7f31245a 
+SYM TABLE
+var_f -> 1
+var_c -> 40
+
+OUTPUT
+15 40 
+_____________________
+EXE STACK
+
+SYM TABLE
+var_f -> 1
+var_c -> 40
+
+OUTPUT
+15 40 
+_____________________

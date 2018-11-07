@@ -1,0 +1,41 @@
+EXE STACK
+b = a+1 ; print(b) ;  a = 2+3*5 
+SYM TABLE
+
+OUTPUT
+
+_____________________
+EXE STACK
+b = a+1 ; print(b) ;  
+SYM TABLE
+a -> 17
+
+OUTPUT
+
+_____________________
+EXE STACK
+print(b) b = a+1 
+SYM TABLE
+a -> 17
+
+OUTPUT
+
+_____________________
+EXE STACK
+print(b) 
+SYM TABLE
+a -> 17
+b -> 18
+
+OUTPUT
+
+_____________________
+EXE STACK
+
+SYM TABLE
+a -> 17
+b -> 18
+
+OUTPUT
+18 
+_____________________

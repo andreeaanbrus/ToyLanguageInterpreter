@@ -1,0 +1,41 @@
+EXE STACK
+if a then v = 2 else v = 3 ; print(v) ;  a = 2-2 
+SYM TABLE
+
+OUTPUT
+
+_____________________
+EXE STACK
+if a then v = 2 else v = 3 ; print(v) ;  
+SYM TABLE
+a -> 0
+
+OUTPUT
+
+_____________________
+EXE STACK
+print(v) if a then v = 2 else v = 3 
+SYM TABLE
+a -> 0
+
+OUTPUT
+
+_____________________
+EXE STACK
+print(v) 
+SYM TABLE
+a -> 0
+v -> 3
+
+OUTPUT
+
+_____________________
+EXE STACK
+
+SYM TABLE
+a -> 0
+v -> 3
+
+OUTPUT
+3 
+_____________________
