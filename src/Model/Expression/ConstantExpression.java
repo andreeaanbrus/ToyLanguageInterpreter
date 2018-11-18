@@ -1,6 +1,7 @@
 package Model.Expression;
 
 import Model.ADT.MyDictionary;
+import Model.ADT.MyHeap;
 
 public class ConstantExpression implements IExpression {
     private int value;
@@ -8,7 +9,7 @@ public class ConstantExpression implements IExpression {
         this.value = value;
     }
     @Override
-    public int evaluate(MyDictionary<String, Integer> symTable) {
+    public int evaluate(MyDictionary<String, Integer> symTable, MyHeap<Integer> heap) {
         return this.value;
     }
     public String toString(){

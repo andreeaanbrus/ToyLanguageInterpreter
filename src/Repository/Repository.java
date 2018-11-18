@@ -31,14 +31,6 @@ public class Repository implements IRepository{
 
     @Override
     public void logProgramStateExec() throws IOException {
-//        File f = new File(logFile);
-//        if(f.exists() && !f.isDirectory())
-//        {
-//            if(!f.delete())
-//            {
-//                System.out.println("Couldn't delete the old file!");
-//            }
-//        }
         printWriter = new PrintWriter(new BufferedWriter(new FileWriter(logFile, true)));
         printWriter.println("EXE STACK");
         printWriter.println(getCurrentProgram().getExeStack().toString());
@@ -46,6 +38,10 @@ public class Repository implements IRepository{
         printWriter.println(getCurrentProgram().getSymTable().toString());
         printWriter.println("OUTPUT");
         printWriter.println(getCurrentProgram().getOutput().toString());
+        printWriter.println("FILE TABLE");
+        printWriter.println(getCurrentProgram().getFileTable().toString());
+        printWriter.println("HEAP");
+        printWriter.println(getCurrentProgram().getHeap().toString());
         printWriter.println("_____________________");
         printWriter.close();
     }

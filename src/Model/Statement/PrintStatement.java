@@ -18,7 +18,7 @@ public class PrintStatement implements IStatement {
     @Override
     public ProgramState execute(ProgramState programState) {
         MyList<Integer> output = programState.getOutput();
-        output.add(exp.evaluate(programState.getSymTable()));
+        output.add(exp.evaluate(programState.getSymTable(), programState.getHeap()));
         return programState;
     }
 }

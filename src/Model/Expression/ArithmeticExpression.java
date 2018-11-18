@@ -1,6 +1,7 @@
 package Model.Expression;
 
 import Model.ADT.MyDictionary;
+import Model.ADT.MyHeap;
 
 public class ArithmeticExpression implements IExpression {
     private IExpression operand1, operand2;
@@ -13,9 +14,9 @@ public class ArithmeticExpression implements IExpression {
     }
 
     @Override
-    public int evaluate(MyDictionary<String, Integer> symTable) {
-        int firstResult = this.operand1.evaluate(symTable);
-        int secondResult = this.operand2.evaluate(symTable);
+    public int evaluate(MyDictionary<String, Integer> symTable, MyHeap<Integer> heap) {
+        int firstResult = this.operand1.evaluate(symTable, heap);
+        int secondResult = this.operand2.evaluate(symTable, heap);
         if(this.operator == '+')
             return firstResult + secondResult;
         if(this.operator == '-')

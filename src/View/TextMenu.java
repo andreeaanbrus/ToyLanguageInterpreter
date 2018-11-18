@@ -5,14 +5,14 @@ import Model.Command.Command;
 import java.util.HashMap;
 import java.util.Scanner;
 
-public class TextMenu {
+class TextMenu {
     private HashMap<String, Command> commands;
 
-    public TextMenu() {
+    TextMenu() {
         this.commands = new HashMap<>();
     }
 
-    public void addCommand(Command c){
+    void addCommand(Command c){
         commands.put(c.getKey(), c);
     }
 
@@ -23,19 +23,20 @@ public class TextMenu {
         }
     }
 
-    public void show(){
-        Scanner scanner = new Scanner(System.in);
-        while(true){
-            printMenu();
-            System.out.println("Input the option: ");
-            String key = scanner.nextLine();
-            Command com = commands.get(key);
-            if(com == null) {
-                System.out.println("Invalid input");
-                continue;
-            }
-            com.execute();
+    void show(){
+        try (Scanner scanner = new Scanner(System.in)) {
+            while (true) {
+                printMenu();
+                System.out.println("Input the option: ");
+                String key = scanner.nextLine();
+                Command com = commands.get(key);
+                if (com == null) {
+                    System.out.println("Invalid input");
+                    continue;
+                }
+                com.execute();
 
+            }
         }
     }
 }

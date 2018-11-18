@@ -1,6 +1,7 @@
 package Model;
 
 import Model.ADT.MyDictionary;
+import Model.ADT.MyHeap;
 import Model.ADT.MyList;
 import Model.ADT.MyStack;
 import Model.Statement.IStatement;
@@ -16,13 +17,18 @@ public class ProgramState {
     private MyStack<IStatement> exeStack;
     private MyList<Integer> output;
     private MyDictionary<Integer, Pair<String, BufferedReader>> fileTable;
+    private MyHeap<Integer> heap;
+    private int fileDescriptor;
 
-    public ProgramState(MyDictionary<String, Integer> symTable, MyStack<IStatement> exeStack, MyList<Integer> output, IStatement program, MyDictionary<Integer, Pair<String, BufferedReader>> fileTable) {
+
+    public ProgramState(MyDictionary<String, Integer> symTable, MyStack<IStatement> exeStack, MyList<Integer> output, IStatement program, MyDictionary<Integer, Pair<String, BufferedReader>> fileTable, MyHeap<Integer> heap, int fileDescriptor) {
         this.symTable = symTable;
         this.exeStack = exeStack;
         this.output = output;
         this.fileTable = fileTable;
+        this.heap = heap;
         //originalProgram=deepCopy(program);
+        this.fileDescriptor = fileDescriptor;
         exeStack.push(program);
     }
 
@@ -62,6 +68,15 @@ public class ProgramState {
         this.output = output;
     }
 
+
+    public int getFileDescriptor() {
+        return fileDescriptor;
+    }
+
+    public int getNextFileDescriptor() {
+        fileDescriptor++;
+        return fileDescriptor;
+    }
     public String toString(){
         String s = "";
         s += "exeStack:\n";
@@ -71,5 +86,9 @@ public class ProgramState {
         s += "\noutput:";
         s += this.output.toString();
         return s;
+    }
+
+    public MyHeap<Integer> getHeap() {
+        return heap;
     }
 }

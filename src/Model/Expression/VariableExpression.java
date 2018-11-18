@@ -1,6 +1,7 @@
 package Model.Expression;
 
 import Model.ADT.MyDictionary;
+import Model.ADT.MyHeap;
 
 public class VariableExpression implements IExpression {
     private String name;
@@ -9,7 +10,7 @@ public class VariableExpression implements IExpression {
     }
 
     @Override
-    public int evaluate(MyDictionary<String, Integer> st) {
+    public int evaluate(MyDictionary<String, Integer> st, MyHeap<Integer> heap) {
         if(st.get(this.name) != null){
             return st.get(name);
         }
@@ -20,4 +21,6 @@ public class VariableExpression implements IExpression {
     public String toString(){
         return this.name;
     }
+
+
 }

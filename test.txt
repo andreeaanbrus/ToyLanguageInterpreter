@@ -1,16 +1,23 @@
 EXE STACK
-print(v) v = 2 
+print(v)
+v = 2
+
 SYM TABLE
 
 OUTPUT
 
+FILE TABLE
+
 _____________________
 EXE STACK
-print(v) 
+print(v)
+
 SYM TABLE
 v -> 2
 
 OUTPUT
+
+FILE TABLE
 
 _____________________
 EXE STACK
@@ -20,4 +27,6 @@ v -> 2
 
 OUTPUT
 2 
+FILE TABLE
+
 _____________________

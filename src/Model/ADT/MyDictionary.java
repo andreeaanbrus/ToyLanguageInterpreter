@@ -39,6 +39,11 @@ public class MyDictionary<K, V> implements IDictionary<K, V> {
         return dictionary.isEmpty();
     }
 
+    @Override
+    public Collection<K> keySet(){
+        return this.dictionary.keySet();
+    }
+
     public String toString(){
         StringBuilder res = new StringBuilder();
         for(K key : dictionary.keySet())

@@ -1,7 +1,7 @@
 package Model.Statement;
 
 import Model.ADT.MyDictionary;
-import Model.ADT.MyStack;
+import Model.ADT.MyHeap;
 import Model.Expression.IExpression;
 import Model.ProgramState;
 import javafx.util.Pair;
@@ -22,8 +22,8 @@ public class ReadFile implements IStatement {
     @Override
     public ProgramState execute(ProgramState programState) throws IOException {
         MyDictionary<String, Integer> symTable = programState.getSymTable();
-        int x = expressionFileId.evaluate(symTable);
-        MyStack<IStatement> exeStack = programState.getExeStack();
+        MyHeap<Integer> heap = programState.getHeap();
+        int x = expressionFileId.evaluate(symTable, heap);
         MyDictionary<Integer, Pair<String, BufferedReader>> fileTable = programState.getFileTable();
         BufferedReader reader = fileTable.get(x).getValue();
         if(reader == null)
@@ -39,5 +39,11 @@ public class ReadFile implements IStatement {
         }
         symTable.put(variableName, val);
         return programState;
+    }
+
+    public String toString(){
+        String s;
+        s = "ReadFile (" + expressionFileId.toString() + "," + variableName + ")" ;
+        return s;
     }
 }

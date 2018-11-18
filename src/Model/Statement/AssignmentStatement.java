@@ -1,6 +1,7 @@
 package Model.Statement;
 
 import Model.ADT.MyDictionary;
+import Model.ADT.MyHeap;
 import Model.Expression.IExpression;
 import Model.ProgramState;
 
@@ -19,7 +20,8 @@ public class AssignmentStatement implements IStatement {
 
     public ProgramState execute(ProgramState ps){
         MyDictionary<String, Integer> st = ps.getSymTable();
-        st.put(this.varName, this.expression.evaluate(st));
+        MyHeap<Integer> heap = ps.getHeap();
+        st.put(this.varName, this.expression.evaluate(st, heap));
         return ps;
     }
 }

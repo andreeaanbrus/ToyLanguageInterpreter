@@ -1,95 +1,143 @@
 EXE STACK
-Model.Statement.ReadFile@677327b6 ; print(var_c) ; if var_c then Model.Statement.ReadFile@14ae5a5 ; print(var_c) ;  else print(0) ; Model.Statement.CloseRFile@7f31245a ;  ;  ;  Model.Statement.OpenRFile@1540e19d 
+ReadFile (var_f,var_c) ; print(var_c) ; if var_c then ReadFile (var_f,var_c) ; print(var_c) ;  else print(0) ; CloseFile var_f ;  ;  ; 
+OpenRFile(test.in, var_f)
+
 SYM TABLE
 
 OUTPUT
 
+FILE TABLE
+
 _____________________
 EXE STACK
-Model.Statement.ReadFile@677327b6 ; print(var_c) ; if var_c then Model.Statement.ReadFile@14ae5a5 ; print(var_c) ;  else print(0) ; Model.Statement.CloseRFile@7f31245a ;  ;  ;  
+ReadFile (var_f,var_c) ; print(var_c) ; if var_c then ReadFile (var_f,var_c) ; print(var_c) ;  else print(0) ; CloseFile var_f ;  ;  ; 
+
 SYM TABLE
-var_f -> 1
+var_f -> 0
 
 OUTPUT
 
+FILE TABLE
+0 -> test.in=java.io.BufferedReader@29453f44
+
 _____________________
 EXE STACK
-print(var_c) ; if var_c then Model.Statement.ReadFile@14ae5a5 ; print(var_c) ;  else print(0) ; Model.Statement.CloseRFile@7f31245a ;  ;  Model.Statement.ReadFile@677327b6 
+print(var_c) ; if var_c then ReadFile (var_f,var_c) ; print(var_c) ;  else print(0) ; CloseFile var_f ;  ; 
+ReadFile (var_f,var_c)
+
 SYM TABLE
-var_f -> 1
+var_f -> 0
 
 OUTPUT
 
+FILE TABLE
+0 -> test.in=java.io.BufferedReader@29453f44
+
 _____________________
 EXE STACK
-print(var_c) ; if var_c then Model.Statement.ReadFile@14ae5a5 ; print(var_c) ;  else print(0) ; Model.Statement.CloseRFile@7f31245a ;  ;  
+print(var_c) ; if var_c then ReadFile (var_f,var_c) ; print(var_c) ;  else print(0) ; CloseFile var_f ;  ; 
+
 SYM TABLE
-var_f -> 1
+var_f -> 0
 var_c -> 15
 
 OUTPUT
 
+FILE TABLE
+0 -> test.in=java.io.BufferedReader@29453f44
+
 _____________________
 EXE STACK
-if var_c then Model.Statement.ReadFile@14ae5a5 ; print(var_c) ;  else print(0) ; Model.Statement.CloseRFile@7f31245a ;  print(var_c) 
+if var_c then ReadFile (var_f,var_c) ; print(var_c) ;  else print(0) ; CloseFile var_f ; 
+print(var_c)
+
 SYM TABLE
-var_f -> 1
+var_f -> 0
 var_c -> 15
 
 OUTPUT
 
+FILE TABLE
+0 -> test.in=java.io.BufferedReader@29453f44
+
 _____________________
 EXE STACK
-if var_c then Model.Statement.ReadFile@14ae5a5 ; print(var_c) ;  else print(0) ; Model.Statement.CloseRFile@7f31245a ;  
+if var_c then ReadFile (var_f,var_c) ; print(var_c) ;  else print(0) ; CloseFile var_f ; 
+
 SYM TABLE
-var_f -> 1
+var_f -> 0
 var_c -> 15
 
 OUTPUT
 15 
+FILE TABLE
+0 -> test.in=java.io.BufferedReader@29453f44
+
 _____________________
 EXE STACK
-Model.Statement.CloseRFile@7f31245a if var_c then Model.Statement.ReadFile@14ae5a5 ; print(var_c) ;  else print(0) 
+CloseFile var_f
+if var_c then ReadFile (var_f,var_c) ; print(var_c) ;  else print(0)
+
 SYM TABLE
-var_f -> 1
+var_f -> 0
 var_c -> 15
 
 OUTPUT
 15 
+FILE TABLE
+0 -> test.in=java.io.BufferedReader@29453f44
+
 _____________________
 EXE STACK
-Model.Statement.CloseRFile@7f31245a print(var_c) Model.Statement.ReadFile@14ae5a5 
+CloseFile var_f
+print(var_c)
+ReadFile (var_f,var_c)
+
 SYM TABLE
-var_f -> 1
+var_f -> 0
 var_c -> 15
 
 OUTPUT
 15 
+FILE TABLE
+0 -> test.in=java.io.BufferedReader@29453f44
+
 _____________________
 EXE STACK
-Model.Statement.CloseRFile@7f31245a print(var_c) 
+CloseFile var_f
+print(var_c)
+
 SYM TABLE
-var_f -> 1
-var_c -> 40
+var_f -> 0
+var_c -> 50
 
 OUTPUT
 15 
+FILE TABLE
+0 -> test.in=java.io.BufferedReader@29453f44
+
 _____________________
 EXE STACK
-Model.Statement.CloseRFile@7f31245a 
+CloseFile var_f
+
 SYM TABLE
-var_f -> 1
-var_c -> 40
+var_f -> 0
+var_c -> 50
 
 OUTPUT
-15 40 
+15 50 
+FILE TABLE
+0 -> test.in=java.io.BufferedReader@29453f44
+
 _____________________
 EXE STACK
 
 SYM TABLE
-var_f -> 1
-var_c -> 40
+var_f -> 0
+var_c -> 50
 
 OUTPUT
-15 40 
+15 50 
+FILE TABLE
+
 _____________________

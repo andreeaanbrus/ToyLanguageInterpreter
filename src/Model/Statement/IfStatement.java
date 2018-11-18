@@ -22,7 +22,7 @@ public class IfStatement implements IStatement {
 
     @Override
     public ProgramState execute(ProgramState programState) throws IOException {
-        int res = condition.evaluate(programState.getSymTable());
+        int res = condition.evaluate(programState.getSymTable(), programState.getHeap());
         if( res != 0 )
             ifStatement.execute(programState);
         else
