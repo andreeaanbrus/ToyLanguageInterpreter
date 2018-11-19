@@ -1,6 +1,8 @@
 package Model.ADT;
 
 import java.util.Collection;
+import java.util.HashMap;
+import java.util.Map;
 
 public class MyHeap<V> implements IHeap<V> {
     private MyDictionary<Integer,V> heap;
@@ -38,5 +40,13 @@ public class MyHeap<V> implements IHeap<V> {
 
     public void update(Integer address, V value) {
         heap.put(address, value);
+    }
+
+    public HashMap<Integer, V> getContent(){
+        return heap.getContent();
+    }
+
+    public void setContent(HashMap<Integer, V> newHeap) {
+        heap.setContent(newHeap);
     }
 }

@@ -51,6 +51,14 @@ public class MyDictionary<K, V> implements IDictionary<K, V> {
         return res.toString();
     }
 
+    HashMap<K, V> getContent(){
+        return dictionary;
+    }
+
+    public void setContent(HashMap<K, V> newDictionary){
+        this.dictionary = newDictionary;
+    }
+
     public Collection<V> values(){
         return dictionary.values();
     }

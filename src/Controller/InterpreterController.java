@@ -6,6 +6,11 @@ import Model.Statement.IStatement;
 import Repository.IRepository;
 import Exception.ADTException;
 
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.stream.Collectors;
+
 public class InterpreterController {
     private IRepository repo;
 
@@ -27,6 +32,7 @@ public class InterpreterController {
         try{
             while(!program.getExeStack().isEmpty()){
                 oneStep(program);
+//                program.getHeap().setContent(conservativeGarbageCollector(program.getSymTable().values(), program.getHeap().getContent()));
                 repo.logProgramStateExec();
             }
         }
@@ -37,4 +43,12 @@ public class InterpreterController {
             e.printStackTrace();
         }
     }
+
+//    private HashMap<Integer, Integer> conservativeGarbageCollector(Collection<Integer> symTableValues, Map<Integer, Integer> heap) {
+//        //TODO incearca sa intelegi ce face mizeria asta
+//
+//                .filter(e -> symTableValues.contains(e.getKey()))
+//                .collect(Collectors.toMap(HashMap.Entry::getKey, HashMap.Entry::getValue));
+//        return collect;
+//    }
 }
