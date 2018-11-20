@@ -7,10 +7,7 @@ import Model.ADT.MyList;
 import Model.ADT.MyStack;
 import Model.Command.ExitCommand;
 import Model.Command.RunExample;
-import Model.Expression.ArithmeticExpression;
-import Model.Expression.ConstantExpression;
-import Model.Expression.HeapReadingExpression;
-import Model.Expression.VariableExpression;
+import Model.Expression.*;
 import Model.ProgramState;
 import Model.Statement.*;
 import Repository.*;
@@ -239,6 +236,40 @@ public class View {
         repo9.add(programState9);
         InterpreterController ctrl9 = new InterpreterController(repo9);
 
+////        v=6; (while (v-4) print(v);v=v-1);print(v)
+        MyDictionary<String, Integer> symDict10 = new MyDictionary<>();
+        MyList<Integer> out10 = new MyList<>();
+        MyStack<IStatement> exeStack10 = new MyStack<>();
+        MyDictionary<Integer, Pair<String, BufferedReader>> fileTable10 = new MyDictionary<>();
+        MyHeap<Integer> heap10 = new MyHeap<>();
+        // v=6; (while (v-4) print(v);v=v-1); print(v)
+        IStatement ex10 = new CompoundStatement(
+                new AssignmentStatement("v", new ConstantExpression(6)),
+                new CompoundStatement(
+                        new WhileStatement(new ArithmeticExpression(new VariableExpression("v"), '-', new ConstantExpression(4)),
+                                new CompoundStatement(
+                                        new PrintStatement(new VariableExpression("v")),
+                                        new AssignmentStatement("v", new ArithmeticExpression(new VariableExpression("v"), '-', new ConstantExpression(1)))
+                                )),
+                        new PrintStatement(new VariableExpression("v")))
+        );
+
+//        IStatement ex10 = new CompoundStatement(
+//                new AssignmentStatement("v", new ConstantExpression(6)),
+//                new CompoundStatement(new  WhileStatement(new ArithmeticExpression(new VariableExpression("v"), '-', new ConstantExpression(4)),
+//                                                         new CompoundStatement(new PrintStatement(new VariableExpression("v")),
+//                                                                                new AssignmentStatement("v", new ArithmeticExpression(new VariableExpression("v"), '-', new ConstantExpression(1))))),
+//
+//                        new PrintStatement(new VariableExpression("v"))
+//                        ));
+        ProgramState programState10 = new ProgramState(symDict10, exeStack10, out10, ex10, fileTable10, heap10, 0);
+        IRepository repo10 = new Repository("text10.txt");
+        repo10.add(programState10);
+        InterpreterController ctrl10 = new InterpreterController(repo10);
+
+
+
+
         TextMenu menu = new TextMenu();
         menu.addCommand(new ExitCommand("0", "exit"));
 //        menu.addCommand(new RunExample("2", ex2.toString(), ctrl2));
@@ -249,6 +280,9 @@ public class View {
         menu.addCommand(new RunExample("7", ex7.toString(), ctrl7));
         menu.addCommand(new RunExample("8", ex8.toString(), ctrl8));
         menu.addCommand(new RunExample("9", ex9.toString(), ctrl9));
+        menu.addCommand(new RunExample("10", ex10.toString(), ctrl10));
+
+
         menu.show();
 
     }
