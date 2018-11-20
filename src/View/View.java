@@ -210,6 +210,35 @@ public class View {
         repo8.add(programState8);
         InterpreterController ctrl8 = new InterpreterController(repo8);
 
+        // v=10;new(v,20);new(a,22);wH(a,30);print(a);print(rH(a));a=0
+        MyDictionary<String, Integer> symDict9 = new MyDictionary<>();
+        MyList<Integer> out9 = new MyList<>();
+        MyStack<IStatement> exeStack9 = new MyStack<>();
+        MyDictionary<Integer, Pair<String, BufferedReader>> fileTable9 = new MyDictionary<>();
+        MyHeap<Integer> heap9 = new MyHeap<>();
+        IStatement ex9 = new CompoundStatement(
+                new AssignmentStatement("v", new ConstantExpression(10)),
+                new CompoundStatement(
+                        new NewStatement("v", new ConstantExpression(20)),
+                        new CompoundStatement(
+                                new NewStatement("a", new ConstantExpression(22)),
+                                new CompoundStatement(
+                                        new HeapWritingStatement("a", new ConstantExpression(30)),
+                                        new CompoundStatement(new PrintStatement(new VariableExpression("a")),
+                                                new CompoundStatement(
+                                                        new PrintStatement(new HeapReadingExpression("a")),
+                                                        new AssignmentStatement("a", new ConstantExpression(0))
+                                                )
+
+                                        )
+                                )
+                        ))
+        );
+        ProgramState programState9 = new ProgramState(symDict9, exeStack9, out9, ex9, fileTable9, heap9, 0);
+        IRepository repo9 = new Repository("text9.txt");
+        repo9.add(programState9);
+        InterpreterController ctrl9 = new InterpreterController(repo9);
+
         TextMenu menu = new TextMenu();
         menu.addCommand(new ExitCommand("0", "exit"));
 //        menu.addCommand(new RunExample("2", ex2.toString(), ctrl2));
@@ -219,6 +248,7 @@ public class View {
         menu.addCommand(new RunExample("6", ex6.toString(), ctrl6));
         menu.addCommand(new RunExample("7", ex7.toString(), ctrl7));
         menu.addCommand(new RunExample("8", ex8.toString(), ctrl8));
+        menu.addCommand(new RunExample("9", ex9.toString(), ctrl9));
         menu.show();
 
     }

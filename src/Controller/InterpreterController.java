@@ -1,5 +1,6 @@
 package Controller;
 
+import Model.ADT.MyDictionary;
 import Model.ADT.MyStack;
 import Model.ProgramState;
 import Model.Statement.IStatement;
@@ -9,6 +10,7 @@ import Exception.ADTException;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
 public class InterpreterController {
@@ -32,7 +34,7 @@ public class InterpreterController {
         try{
             while(!program.getExeStack().isEmpty()){
                 oneStep(program);
-//                program.getHeap().setContent(conservativeGarbageCollector(program.getSymTable().values(), program.getHeap().getContent()));
+                program.getHeap().setContent((HashMap<Integer, Integer>) conservativeGarbageCollector(program.getSymTable().values(), program.getHeap().getContent()));
                 repo.logProgramStateExec();
             }
         }
@@ -44,11 +46,9 @@ public class InterpreterController {
         }
     }
 
-//    private HashMap<Integer, Integer> conservativeGarbageCollector(Collection<Integer> symTableValues, Map<Integer, Integer> heap) {
-//        //TODO incearca sa intelegi ce face mizeria asta
-//
-//                .filter(e -> symTableValues.contains(e.getKey()))
-//                .collect(Collectors.toMap(HashMap.Entry::getKey, HashMap.Entry::getValue));
-//        return collect;
-//    }
+    private Map<Integer,Integer> conservativeGarbageCollector(Collection<Integer> symTableValues, Map<Integer, Integer> heap) {
+        return heap.entrySet().stream()
+                .filter(e->symTableValues.contains(e.getKey()))
+                .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
+    }
 }
