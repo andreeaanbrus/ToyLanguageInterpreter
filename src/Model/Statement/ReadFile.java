@@ -29,7 +29,6 @@ public class ReadFile implements IStatement {
         if(reader == null)
             throw new ADTException("No such file descriptor");
         String line = reader.readLine();
-        System.out.println(line);
         int val;
         if(line == null) {
             val = 0;

@@ -4,6 +4,8 @@ package Model.Command;
 import Controller.InterpreterController;
 import Exception.ADTException;
 
+import java.io.IOException;
+
 
 public class RunExample extends Command {
     private InterpreterController controller;
@@ -19,6 +21,8 @@ public class RunExample extends Command {
         }
         catch (ADTException e){
             System.out.println(e.toString());
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 }

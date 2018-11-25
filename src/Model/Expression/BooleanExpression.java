@@ -35,7 +35,7 @@ public class BooleanExpression implements IExpression {
 
     @Override
     public String toString() {
-        String s = exp1.toString() + " " + type + " " +exp2.toString();
+        String s = "( " + exp1.toString() + " " + type + " " +exp2.toString() + " ) ";
         return s;
     }
 }

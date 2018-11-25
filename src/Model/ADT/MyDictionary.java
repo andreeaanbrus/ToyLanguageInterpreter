@@ -2,6 +2,9 @@ package Model.ADT;
 
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.Map;
+import java.util.Set;
+
 import Exception.ADTException;
 
 public class MyDictionary<K, V> implements IDictionary<K, V> {
@@ -51,14 +54,27 @@ public class MyDictionary<K, V> implements IDictionary<K, V> {
         return res.toString();
     }
 
-    HashMap<K, V> getContent(){
+    @Override
+    public HashMap<K, V> getContent(){
         return dictionary;
     }
 
+    @Override
     public void setContent(HashMap<K, V> newDictionary){
         this.dictionary = newDictionary;
     }
 
+    @Override
+    public Set<Map.Entry<K,V>> entrySet(){
+        return dictionary.entrySet();
+    }
+
+    @Override
+    public Boolean containsKey(K key){
+        return dictionary.containsKey(key);
+    }
+
+    @Override
     public Collection<V> values(){
         return dictionary.values();
     }

@@ -105,32 +105,32 @@ public class View {
 ////      (if var_c then readFile(var_f,var_c);print(var_c)
 ////      else print(0));
 ////      closeRFile(var_f)
-//        MyDictionary<String, Integer> symDict5 = new MyDictionary<>();
-//        MyList<Integer> out5 = new MyList<>();
-//        MyStack<IStatement> exeStack5 = new MyStack<>();
-//        MyDictionary<Integer, Pair<String, BufferedReader>> fileTable5 = new MyDictionary<>();
-//        MyHeap heap5 = new MyHeap();
-//        IStatement ex5 = new CompoundStatement(
-//                new OpenRFile("test.in", "var_f"),
-//                new CompoundStatement(
-//                        new ReadFile(new ArithmeticExpression(new VariableExpression("var_f"), '+', new ConstantExpression( 2)), "var_c"),
-//                        new CompoundStatement(
-//                                new PrintStatement(new VariableExpression("var_c")),
-//                                new CompoundStatement(
-//                                        new IfStatement(
-//                                                new VariableExpression("var_c"),
-//                                                new CompoundStatement(
-//                                                        new ReadFile(new VariableExpression("var_f"), "var_c"),
-//                                                        new PrintStatement(new VariableExpression("var_c"))),
-//                                                new PrintStatement(new ConstantExpression(0))),
-//                                        new CloseRFile(new VariableExpression("var_f")))
-//                        )
-//                )
-//        );
-//        ProgramState programState5 = new ProgramState(symDict5, exeStack5, out5, ex5, fileTable5, heap5, 0);
-//        IRepository repo5 = new Repository("test5.txt");
-//        repo5.add(programState5);
-//        InterpreterController ctrl5 = new InterpreterController(repo5);
+        MyDictionary<String, Integer> symDict5 = new MyDictionary<>();
+        MyList<Integer> out5 = new MyList<>();
+        MyStack<IStatement> exeStack5 = new MyStack<>();
+        MyDictionary<Integer, Pair<String, BufferedReader>> fileTable5 = new MyDictionary<>();
+        MyHeap heap5 = new MyHeap();
+        IStatement ex5 = new CompoundStatement(
+                new OpenRFile("test.in", "var_f"),
+                new CompoundStatement(
+                        new ReadFile(new ArithmeticExpression(new VariableExpression("var_f"), '+', new ConstantExpression( 2)), "var_c"),
+                        new CompoundStatement(
+                                new PrintStatement(new VariableExpression("var_c")),
+                                new CompoundStatement(
+                                        new IfStatement(
+                                                new VariableExpression("var_c"),
+                                                new CompoundStatement(
+                                                        new ReadFile(new VariableExpression("var_f"), "var_c"),
+                                                        new PrintStatement(new VariableExpression("var_c"))),
+                                                new PrintStatement(new ConstantExpression(0))),
+                                        new CloseRFile(new VariableExpression("var_f")))
+                        )
+                )
+        );
+        ProgramState programState5 = new ProgramState(symDict5, exeStack5, out5, ex5, fileTable5, heap5, 0);
+        IRepository repo5 = new Repository("test5.txt");
+        repo5.add(programState5);
+        InterpreterController ctrl5 = new InterpreterController(repo5);
 
         //Example 6 : v=10;new(v,20);new(a,22);print(v)
 
@@ -236,13 +236,12 @@ public class View {
         repo9.add(programState9);
         InterpreterController ctrl9 = new InterpreterController(repo9);
 
-////        v=6; (while (v-4) print(v);v=v-1);print(v)
+//        v=6; (while (v-4) print(v);v=v-1);print(v)
         MyDictionary<String, Integer> symDict10 = new MyDictionary<>();
         MyList<Integer> out10 = new MyList<>();
         MyStack<IStatement> exeStack10 = new MyStack<>();
         MyDictionary<Integer, Pair<String, BufferedReader>> fileTable10 = new MyDictionary<>();
         MyHeap<Integer> heap10 = new MyHeap<>();
-        // v=6; (while (v-4) print(v);v=v-1); print(v)
         IStatement ex10 = new CompoundStatement(
                 new AssignmentStatement("v", new ConstantExpression(6)),
                 new CompoundStatement(
@@ -253,21 +252,66 @@ public class View {
                                 )),
                         new PrintStatement(new VariableExpression("v")))
         );
-
-//        IStatement ex10 = new CompoundStatement(
-//                new AssignmentStatement("v", new ConstantExpression(6)),
-//                new CompoundStatement(new  WhileStatement(new ArithmeticExpression(new VariableExpression("v"), '-', new ConstantExpression(4)),
-//                                                         new CompoundStatement(new PrintStatement(new VariableExpression("v")),
-//                                                                                new AssignmentStatement("v", new ArithmeticExpression(new VariableExpression("v"), '-', new ConstantExpression(1))))),
-//
-//                        new PrintStatement(new VariableExpression("v"))
-//                        ));
         ProgramState programState10 = new ProgramState(symDict10, exeStack10, out10, ex10, fileTable10, heap10, 0);
         IRepository repo10 = new Repository("text10.txt");
         repo10.add(programState10);
         InterpreterController ctrl10 = new InterpreterController(repo10);
 
+        //v = 10 + (2 < 6)
+        MyDictionary<String, Integer> symDict11 = new MyDictionary<>();
+        MyList<Integer> out11 = new MyList<>();
+        MyStack<IStatement> exeStack11 = new MyStack<>();
+        MyDictionary<Integer, Pair<String, BufferedReader>> fileTable11 = new MyDictionary<>();
+        MyHeap<Integer> heap11 = new MyHeap<>();
+        IStatement ex11 = new CompoundStatement(new AssignmentStatement("v", new ArithmeticExpression(new ConstantExpression(10), '+', new BooleanExpression(new ConstantExpression(2), new ConstantExpression(6), "<"))),
+                new PrintStatement(new VariableExpression("v")));
+        ProgramState programState11 = new ProgramState(symDict11, exeStack11, out11, ex11, fileTable11, heap11, 0);
+        IRepository repo11 = new Repository("text11.txt");
+        repo11.add(programState11);
+        InterpreterController ctrl11 = new InterpreterController(repo11);
 
+//        (10 + 2)< 6
+        MyDictionary<String, Integer> symDict12 = new MyDictionary<>();
+        MyList<Integer> out12 = new MyList<>();
+        MyStack<IStatement> exeStack12 = new MyStack<>();
+        MyDictionary<Integer, Pair<String, BufferedReader>> fileTable12 = new MyDictionary<>();
+        MyHeap<Integer> heap12 = new MyHeap<>();
+        IStatement ex12 = new CompoundStatement(new AssignmentStatement("v", new BooleanExpression(new ArithmeticExpression(new ConstantExpression(10), '+', new ConstantExpression(2)), new ConstantExpression(6), "<")),
+                new PrintStatement(new VariableExpression("v")));
+        ProgramState programState12 = new ProgramState(symDict12, exeStack12, out12, ex12, fileTable12, heap12, 0);
+        IRepository repo12 = new Repository("text12.txt");
+        repo12.add(programState12);
+        InterpreterController ctrl12 = new InterpreterController(repo12);
+
+
+/////      openRFile(var_f,"test.in");
+////      readFile(var_f+2,var_c);print(var_c);
+////      (if var_c then readFile(var_f,var_c);print(var_c)
+////      else print(0));
+        MyDictionary<String, Integer> symDict13 = new MyDictionary<>();
+        MyList<Integer> out13 = new MyList<>();
+        MyStack<IStatement> exeStack13 = new MyStack<>();
+        MyDictionary<Integer, Pair<String, BufferedReader>> fileTable13 = new MyDictionary<>();
+        MyHeap<Integer> heap13 = new MyHeap<>();
+        IStatement ex13 = new CompoundStatement(
+                new OpenRFile("test.in", "var_f"),
+                new CompoundStatement(
+                        new ReadFile(new VariableExpression("var_f"), "var_c"),
+                        new CompoundStatement(
+                                new PrintStatement(new VariableExpression("var_c")),
+                                new IfStatement(
+                                        new VariableExpression("var_c"),
+                                        new CompoundStatement(
+                                                new ReadFile(new VariableExpression("var_f"), "var_c"),
+                                                new PrintStatement(new VariableExpression("var_c"))),
+                                        new PrintStatement(new ConstantExpression(0)))
+                        )
+                )
+        );
+        ProgramState programState13 = new ProgramState(symDict13, exeStack13, out13, ex13, fileTable13, heap13, 1);
+        IRepository repo13 = new Repository("text13.txt");
+        repo13.add(programState13);
+        InterpreterController ctrl13 = new InterpreterController(repo13);
 
 
         TextMenu menu = new TextMenu();
@@ -275,12 +319,15 @@ public class View {
 //        menu.addCommand(new RunExample("2", ex2.toString(), ctrl2));
 //        menu.addCommand(new RunExample("3", ex3.toString(), ctrl3));
 //        menu.addCommand(new RunExample("4", ex4.toString(), ctrl4));
-//        menu.addCommand(new RunExample("5", ex5.toString(), ctrl5));
+        menu.addCommand(new RunExample("5", ex5.toString(), ctrl5));
         menu.addCommand(new RunExample("6", ex6.toString(), ctrl6));
         menu.addCommand(new RunExample("7", ex7.toString(), ctrl7));
         menu.addCommand(new RunExample("8", ex8.toString(), ctrl8));
         menu.addCommand(new RunExample("9", ex9.toString(), ctrl9));
         menu.addCommand(new RunExample("10", ex10.toString(), ctrl10));
+        menu.addCommand(new RunExample("11", ex11.toString(), ctrl11));
+        menu.addCommand(new RunExample("12", ex12.toString(), ctrl12));
+        menu.addCommand(new RunExample("13", ex13.toString(), ctrl13));
 
 
         menu.show();

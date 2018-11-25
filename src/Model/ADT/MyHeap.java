@@ -38,14 +38,17 @@ public class MyHeap<V> implements IHeap<V> {
         return s;
     }
 
-    public void update(Integer address, V value) {
-        heap.put(address, value);
-    }
-
+    @Override
     public HashMap<Integer, V> getContent(){
         return heap.getContent();
     }
 
+    @Override
+    public void update(Integer address, V value) {
+        heap.put(address, value);
+    }
+
+    @Override
     public void setContent(HashMap<Integer, V> newHeap) {
         heap.setContent(newHeap);
     }
