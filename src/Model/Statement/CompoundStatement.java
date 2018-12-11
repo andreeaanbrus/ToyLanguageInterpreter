@@ -16,7 +16,7 @@ public class CompoundStatement implements IStatement {
         MyStack<IStatement> exeStack = programState.getExeStack();
         exeStack.push(this.statement2);
         exeStack.push(this.statement1);
-        return programState;
+        return null;
     }
 
     public String toString(){

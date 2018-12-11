@@ -32,7 +32,7 @@ public class OpenRFile implements IStatement {
         fileTable.put(numberOfVarFileId, p);
         symTable.put(varFileId, numberOfVarFileId);
 //            numberOfVarFileId ++;
-        return programState;
+        return null;
     }
 
     public String toString(){

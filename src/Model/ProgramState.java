@@ -6,6 +6,7 @@ import Model.ADT.MyList;
 import Model.ADT.MyStack;
 import Model.Statement.IStatement;
 import javafx.util.Pair;
+import Exception.ADTException;
 
 import java.io.BufferedReader;
 
@@ -19,9 +20,9 @@ public class ProgramState {
     private MyDictionary<Integer, Pair<String, BufferedReader>> fileTable;
     private MyHeap<Integer> heap;
     private int fileDescriptor;
+    private int threadId;
 
-
-    public ProgramState(MyDictionary<String, Integer> symTable, MyStack<IStatement> exeStack, MyList<Integer> output, IStatement program, MyDictionary<Integer, Pair<String, BufferedReader>> fileTable, MyHeap<Integer> heap, int fileDescriptor) {
+    public ProgramState(MyDictionary<String, Integer> symTable, MyStack<IStatement> exeStack, MyList<Integer> output, IStatement program, MyDictionary<Integer, Pair<String, BufferedReader>> fileTable, MyHeap<Integer> heap, int fileDescriptor, int threadId) {
         this.symTable = symTable;
         this.exeStack = exeStack;
         this.output = output;
@@ -30,6 +31,7 @@ public class ProgramState {
         //originalProgram=deepCopy(program);
         this.fileDescriptor = fileDescriptor;
         exeStack.push(program);
+        this.threadId = threadId;
     }
 
     public IStatement getProgram() {
@@ -77,8 +79,13 @@ public class ProgramState {
         fileDescriptor++;
         return fileDescriptor;
     }
+
+    public Boolean isNotCompleted(){
+        return !exeStack.isEmpty();
+    }
+
     public String toString(){
-        String s = "";
+        String s = this.threadId + "\n";
         s += "exeStack:\n";
         s += this.exeStack.toString();
         s += "\nsymTable:";
@@ -87,8 +94,18 @@ public class ProgramState {
         s += this.output.toString();
         return s;
     }
+    public ProgramState oneStep() throws Exception {
+        if(exeStack.isEmpty())
+            throw new ADTException("Stack is empty");
+        IStatement currentStatement = exeStack.pop();
+        return currentStatement.execute(this);
+    }
 
     public MyHeap<Integer> getHeap() {
         return heap;
+    }
+
+    public int getThreadId() {
+        return threadId;
     }
 }

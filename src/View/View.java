@@ -127,7 +127,7 @@ public class View {
                         )
                 )
         );
-        ProgramState programState5 = new ProgramState(symDict5, exeStack5, out5, ex5, fileTable5, heap5, 0);
+        ProgramState programState5 = new ProgramState(symDict5, exeStack5, out5, ex5, fileTable5, heap5, 0, 1);
         IRepository repo5 = new Repository("test5.txt");
         repo5.add(programState5);
         InterpreterController ctrl5 = new InterpreterController(repo5);
@@ -149,7 +149,7 @@ public class View {
                                 )
                         )
         );
-        ProgramState programState6 = new ProgramState(symDict6, exeStack6, out6, ex6,fileTable6, heap6, 0);
+        ProgramState programState6 = new ProgramState(symDict6, exeStack6, out6, ex6,fileTable6, heap6, 0, 1);
         IRepository repo6 = new Repository("test6.txt");
         repo6.add(programState6);
         InterpreterController ctrl6 = new InterpreterController(repo6);
@@ -176,7 +176,7 @@ public class View {
                             )
                     )
         );
-        ProgramState programState7 = new ProgramState(symDict7, exeStack7, out7, ex7,fileTable7, heap7, 0);
+        ProgramState programState7 = new ProgramState(symDict7, exeStack7, out7, ex7,fileTable7, heap7, 0, 1);
         IRepository repo7 = new Repository("test7.txt");
         repo7.add(programState7);
         InterpreterController ctrl7 = new InterpreterController(repo7);
@@ -202,7 +202,7 @@ public class View {
                                 )
                         ))
         );
-        ProgramState programState8 = new ProgramState(symDict8, exeStack8, out8, ex8, fileTable8, heap8, 0);
+        ProgramState programState8 = new ProgramState(symDict8, exeStack8, out8, ex8, fileTable8, heap8, 0, 1);
         IRepository repo8 = new Repository("text8.txt");
         repo8.add(programState8);
         InterpreterController ctrl8 = new InterpreterController(repo8);
@@ -231,7 +231,7 @@ public class View {
                                 )
                         ))
         );
-        ProgramState programState9 = new ProgramState(symDict9, exeStack9, out9, ex9, fileTable9, heap9, 0);
+        ProgramState programState9 = new ProgramState(symDict9, exeStack9, out9, ex9, fileTable9, heap9, 0, 1);
         IRepository repo9 = new Repository("text9.txt");
         repo9.add(programState9);
         InterpreterController ctrl9 = new InterpreterController(repo9);
@@ -252,7 +252,7 @@ public class View {
                                 )),
                         new PrintStatement(new VariableExpression("v")))
         );
-        ProgramState programState10 = new ProgramState(symDict10, exeStack10, out10, ex10, fileTable10, heap10, 0);
+        ProgramState programState10 = new ProgramState(symDict10, exeStack10, out10, ex10, fileTable10, heap10, 0, 1);
         IRepository repo10 = new Repository("text10.txt");
         repo10.add(programState10);
         InterpreterController ctrl10 = new InterpreterController(repo10);
@@ -265,7 +265,7 @@ public class View {
         MyHeap<Integer> heap11 = new MyHeap<>();
         IStatement ex11 = new CompoundStatement(new AssignmentStatement("v", new ArithmeticExpression(new ConstantExpression(10), '+', new BooleanExpression(new ConstantExpression(2), new ConstantExpression(6), "<"))),
                 new PrintStatement(new VariableExpression("v")));
-        ProgramState programState11 = new ProgramState(symDict11, exeStack11, out11, ex11, fileTable11, heap11, 0);
+        ProgramState programState11 = new ProgramState(symDict11, exeStack11, out11, ex11, fileTable11, heap11, 0, 1);
         IRepository repo11 = new Repository("text11.txt");
         repo11.add(programState11);
         InterpreterController ctrl11 = new InterpreterController(repo11);
@@ -278,7 +278,7 @@ public class View {
         MyHeap<Integer> heap12 = new MyHeap<>();
         IStatement ex12 = new CompoundStatement(new AssignmentStatement("v", new BooleanExpression(new ArithmeticExpression(new ConstantExpression(10), '+', new ConstantExpression(2)), new ConstantExpression(6), "<")),
                 new PrintStatement(new VariableExpression("v")));
-        ProgramState programState12 = new ProgramState(symDict12, exeStack12, out12, ex12, fileTable12, heap12, 0);
+        ProgramState programState12 = new ProgramState(symDict12, exeStack12, out12, ex12, fileTable12, heap12, 0, 1);
         IRepository repo12 = new Repository("text12.txt");
         repo12.add(programState12);
         InterpreterController ctrl12 = new InterpreterController(repo12);
@@ -308,11 +308,48 @@ public class View {
                         )
                 )
         );
-        ProgramState programState13 = new ProgramState(symDict13, exeStack13, out13, ex13, fileTable13, heap13, 1);
+        ProgramState programState13 = new ProgramState(symDict13, exeStack13, out13, ex13, fileTable13, heap13, 1, 1);
         IRepository repo13 = new Repository("text13.txt");
         repo13.add(programState13);
         InterpreterController ctrl13 = new InterpreterController(repo13);
 
+//        v=10;new(a,22);
+// fork(wH(a,30);v=32;print(v);print(rH(a)));
+// print(v);print(rH(a))
+
+        MyDictionary<String, Integer> symDict14 = new MyDictionary<>();
+        MyList<Integer> out14 = new MyList<>();
+        MyStack<IStatement> exeStack14 = new MyStack<>();
+        MyDictionary<Integer, Pair<String, BufferedReader>> fileTable14 = new MyDictionary<>();
+        MyHeap<Integer> heap14 = new MyHeap<>();
+        IStatement ex14 = new CompoundStatement(
+                new AssignmentStatement("v", new ConstantExpression(10)),
+                new CompoundStatement(
+                        new NewStatement("a", new ConstantExpression(22)),
+                                new CompoundStatement(
+                                        new ForkStatement(
+                                                new CompoundStatement(
+                                                        new HeapWritingStatement("a", new ConstantExpression(30)),
+                                                        new CompoundStatement(
+                                                                new AssignmentStatement("v", new ConstantExpression(32)),
+                                                                new CompoundStatement(
+                                                                        new PrintStatement(new VariableExpression("v")),
+                                                                        new PrintStatement(new HeapReadingExpression("a"))
+                                                                )
+                                                        )
+                                                )
+                                        ),
+                                        new CompoundStatement(
+                                                new PrintStatement(new VariableExpression("v")),
+                                                new PrintStatement(new HeapReadingExpression("a"))
+                                                )
+                                )
+                )
+        );
+        ProgramState programState14 = new ProgramState(symDict14, exeStack14, out14, ex14, fileTable14, heap14, 1, 1);
+        IRepository repo14 = new Repository("text14.txt");
+        repo14.add(programState14);
+        InterpreterController ctrl14 = new InterpreterController(repo14);
 
         TextMenu menu = new TextMenu();
         menu.addCommand(new ExitCommand("0", "exit"));
@@ -328,6 +365,7 @@ public class View {
         menu.addCommand(new RunExample("11", ex11.toString(), ctrl11));
         menu.addCommand(new RunExample("12", ex12.toString(), ctrl12));
         menu.addCommand(new RunExample("13", ex13.toString(), ctrl13));
+        menu.addCommand(new RunExample("14", ex14.toString(), ctrl14));
 
 
         menu.show();

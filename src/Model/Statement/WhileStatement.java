@@ -20,19 +20,18 @@ public class WhileStatement implements IStatement {
 
 
     @Override
-    public ProgramState execute(ProgramState programState) throws IOException {
+    public ProgramState execute(ProgramState programState) {
 
         MyStack<IStatement> exeStack = programState.getExeStack();
         if(expression.evaluate(programState.getSymTable(), programState.getHeap()) != 0) {
             exeStack.push(this);
             exeStack.push(doStatement);
         }
-        return programState;
+        return null;
     }
 
     @Override
     public String toString(){
-        String s = "while ( " + expression.toString() + " ) " + doStatement.toString();
-        return s;
+        return "while ( " + expression.toString() + " ) " + doStatement.toString();
     }
 }

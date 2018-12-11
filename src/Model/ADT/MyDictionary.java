@@ -78,4 +78,12 @@ public class MyDictionary<K, V> implements IDictionary<K, V> {
     public Collection<V> values(){
         return dictionary.values();
     }
+
+    @Override
+    public IDictionary<K, V> deepcopy() {
+        MyDictionary<K, V> clone = new MyDictionary<>();
+        for(K key: dictionary.keySet())
+            clone.put(key, dictionary.get(key));
+        return clone;
+    }
 }

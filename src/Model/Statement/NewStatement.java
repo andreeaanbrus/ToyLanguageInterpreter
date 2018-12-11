@@ -16,13 +16,13 @@ public class NewStatement implements IStatement {
         this.expression = expression;
     }
     @Override
-    public ProgramState execute(ProgramState programState) throws IOException {
+    public ProgramState execute(ProgramState programState) {
         MyDictionary<String, Integer> symTable = programState.getSymTable();
         MyHeap<Integer> heap = programState.getHeap();
         int value = expression.evaluate(symTable, heap);
         int index = heap.allocate(value);
         symTable.put(variable, index);
-        return programState;
+        return null;
     }
 
     public String toString(){

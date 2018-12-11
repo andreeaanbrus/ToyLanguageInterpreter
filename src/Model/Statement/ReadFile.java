@@ -37,7 +37,7 @@ public class ReadFile implements IStatement {
             val = Integer.parseInt(line);
         }
         symTable.put(variableName, val);
-        return programState;
+        return null;
     }
 
     public String toString(){

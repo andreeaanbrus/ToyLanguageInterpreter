@@ -27,6 +27,6 @@ public class IfStatement implements IStatement {
             ifStatement.execute(programState);
         else
             elseStatement.execute(programState);
-        return programState;
+        return null;
     }
 }

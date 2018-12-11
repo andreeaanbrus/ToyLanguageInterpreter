@@ -17,13 +17,13 @@ public class HeapWritingStatement implements IStatement {
     }
 
     @Override
-    public ProgramState execute(ProgramState programState) throws IOException {
+    public ProgramState execute(ProgramState programState) {
         MyDictionary<String, Integer> symTable = programState.getSymTable();
         MyHeap<Integer> heap = programState.getHeap();
         int address = symTable.get(variableName);
         int value  = expression.evaluate(symTable, heap);
         heap.update(address, value);
-        return programState;
+        return null;
     }
 
     @Override

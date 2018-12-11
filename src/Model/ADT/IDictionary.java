@@ -17,4 +17,5 @@ public interface IDictionary<K, V> {
     Set<Map.Entry<K,V>> entrySet();
     Boolean containsKey(K key);
     Collection<V> values();
+    IDictionary<K, V> deepcopy();
 }

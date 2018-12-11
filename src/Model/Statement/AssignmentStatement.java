@@ -22,6 +22,6 @@ public class AssignmentStatement implements IStatement {
         MyDictionary<String, Integer> st = ps.getSymTable();
         MyHeap<Integer> heap = ps.getHeap();
         st.put(this.varName, this.expression.evaluate(st, heap));
-        return ps;
+        return null;
     }
 }
